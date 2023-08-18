@@ -2,20 +2,39 @@
 
 namespace App\Repositories;
 
+use App\Models\Product;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
-//use Your Model
 
 /**
  * Class ProductRepository.
  */
 class ProductRepository extends BaseRepository
 {
-    /**
-     * @return string
-     *  Return the model
-     */
+
     public function model()
     {
-        //return YourModel::class;
+        return Product::class;
     }
+    public function getAllWithFiltersAndSort($categoryId = null, $sortByPrice = false)
+    {
+        $query = $this->model->newQuery();
+        
+        // filtering only product that belongs to that category provided by $categoryId
+        if ($categoryId) {
+            $query->whereHas('categories', function ($q) use ($categoryId) {
+                $q->where('id', $categoryId);
+            });
+        }
+
+        if ($sortByPrice) {
+            $query->orderBy('price', 'asc');
+        }
+
+        return $query->get();
+    }
+
 }
+
+
+
+

@@ -2,8 +2,8 @@
 
 namespace App\Repositories;
 
+use App\Models\Category;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
-//use Your Model
 
 /**
  * Class CategoryRepository.
@@ -16,6 +16,7 @@ class CategoryRepository extends BaseRepository
      */
     public function model()
     {
-        //return YourModel::class;
+        return Category::class;
     }
+
 }
