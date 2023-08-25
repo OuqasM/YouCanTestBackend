@@ -24,7 +24,7 @@ class ProductsTableSeeder extends Seeder
                 'name' => 'Product ' . $index,
                 'description' => 'Description for Product ' . $index,
                 'price' => rand(50, 500),
-                'image' => 'testtesttest/product' . $index . '.jpg',
+                'image' => 'images/test' . $index . '.jpg',
             ]);
 
             $randomCategories = Category::inRandomOrder()->limit(rand(1, 3))->pluck('id');
